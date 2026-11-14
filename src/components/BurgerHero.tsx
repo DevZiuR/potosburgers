@@ -285,8 +285,8 @@ export function BurgerHero() {
       {/* ── Split Hero Section ─────────────────────────────────────────────── */}
       <div className="w-full bg-black text-white flex flex-col">
         <section className="w-full grid grid-cols-1 lg:grid-cols-2 min-h-[calc(100vh-80px)]">
-          {/* Left Column: Burger Image */}
-          <div className="relative bg-black min-h-[460px] sm:min-h-[520px] lg:min-h-full w-full flex items-center justify-center overflow-hidden border-b lg:border-b-0 lg:border-r border-white/10">
+          {/* Left Column: Burger Image (Order 1 on mobile: displays first) */}
+          <div className="relative bg-black min-h-[340px] sm:min-h-[440px] lg:min-h-full w-full flex items-center justify-center overflow-hidden border-b lg:border-b-0 lg:border-r border-white/10 order-1">
             <img
               src="/media/burger-hero.jpg"
               alt="Hamburguesa artesanal en El Tigre"
@@ -294,8 +294,8 @@ export function BurgerHero() {
             />
           </div>
 
-          {/* Right Column: Poster-Style Typography */}
-          <div className="relative bg-[#EFECE6] text-black flex flex-col justify-center p-6 sm:p-8 md:p-10 lg:p-10 xl:p-14 overflow-hidden select-none min-h-[520px] lg:min-h-full">
+          {/* Right Column: Poster-Style Typography (Order 2 on mobile: displays H1 after image) */}
+          <div className="relative bg-[#EFECE6] text-black flex flex-col justify-center p-6 sm:p-8 md:p-10 lg:p-10 xl:p-14 overflow-hidden select-none min-h-[460px] lg:min-h-full order-2">
             {/* Decorative Sticker */}
             <div className="absolute top-6 right-6 sm:top-8 sm:right-8 lg:top-8 lg:right-10 z-10 pointer-events-none">
               <div className="w-18 h-18 sm:w-22 sm:h-22 md:w-24 md:h-24 rounded-full bg-[#0a0a0a] border-2 border-[#E31B23] -rotate-[16deg] shadow-xl flex flex-col items-center justify-center text-center p-2">
@@ -309,21 +309,8 @@ export function BurgerHero() {
             </div>
 
             <div className="w-full max-w-3xl py-6 sm:py-8">
-              {/* Small Badge */}
-              <div
-                style={
-                  isRevealed
-                    ? { animation: "heroFadeRise 500ms var(--ease) 0ms both" }
-                    : { opacity: 0 }
-                }
-                className="inline-flex items-center gap-2 bg-[#E31B23] text-white text-[11px] sm:text-xs font-black uppercase tracking-[0.18em] px-4 py-1.5 rounded-full shadow-sm mb-5 sm:mb-6"
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                <span>Abierto todos los días</span>
-              </div>
-
               {/* Giant Heading */}
-              <h1 className="font-heading font-black uppercase tracking-[-0.035em] text-[clamp(3.6rem,8.2vw,8.8rem)] xl:text-[9.5rem] 2xl:text-[11.6rem] leading-[0.80] sm:leading-[0.78] text-black select-none">
+              <h1 className="font-heading font-black uppercase tracking-[-0.035em] text-[clamp(5.6rem,16.5vw,8.5rem)] sm:text-[clamp(5.4rem,8.5vw,8.8rem)] xl:text-[9.8rem] 2xl:text-[12rem] leading-[0.78] sm:leading-[0.78] text-black select-none">
                 <span
                   style={
                     isRevealed

@@ -477,31 +477,33 @@ export function BurgerMenu() {
       id="menu"
       className="relative w-full bg-white text-black border-t-2 border-b-2 border-black select-none"
     >
-      {/* ── Section Title Banner ────────────────────────────────────────── */}
-      <div className="w-full bg-[#EFECE6] py-4 sm:py-5 md:py-6 px-6 sm:px-10 lg:px-14 flex items-center justify-center">
-        <h2 className="font-heading font-black text-[clamp(3rem,7.5vw,7.8rem)] xl:text-[8.5rem] 2xl:text-[9.5rem] tracking-tight uppercase text-black leading-[0.86] text-center">
-          NUESTRO MENÚ
-        </h2>
-      </div>
+      {/* ── Section Title Banner & Category Tabs (Scroll Reveal) ────────── */}
+      <div className="reveal-section w-full">
+        <div className="reveal-item w-full bg-[#EFECE6] py-4 sm:py-5 md:py-6 px-6 sm:px-10 lg:px-14 flex items-center justify-center">
+          <h2 className="font-heading font-black text-[clamp(3rem,7.5vw,7.8rem)] xl:text-[8.5rem] 2xl:text-[9.5rem] tracking-tight uppercase text-black leading-[0.86] text-center">
+            NUESTRO MENÚ
+          </h2>
+        </div>
 
-      {/* ── Category Tabs Bar ────────────────────────────────────────────── */}
-      <div className="w-full bg-[#FAF9F5] border-b-2 border-black px-4 sm:px-8 lg:px-14 py-4 overflow-x-auto scrollbar-none flex items-center gap-2 sm:gap-3">
-        {categories.map((category) => {
-          const isActive = selectedCategory === category;
-          return (
-            <button
-              key={category}
-              type="button"
-              onClick={() => setSelectedCategory(category)}
-              className={`shrink-0 px-4 sm:px-6 py-2.5 rounded-full font-heading font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 border-2 border-black cursor-pointer ${isActive
-                ? "bg-[#FF5500] text-white shadow-[2px_2px_0px_0px_#000] translate-x-[-1px] translate-y-[-1px]"
-                : "bg-white text-black hover:bg-neutral-100"
-                }`}
-            >
-              {category}
-            </button>
-          );
-        })}
+        {/* ── Category Tabs Bar ────────────────────────────────────────────── */}
+        <div className="reveal-item w-full bg-[#FAF9F5] border-b-2 border-black px-4 sm:px-8 lg:px-14 py-4 overflow-x-auto scrollbar-none flex items-center gap-2 sm:gap-3">
+          {categories.map((category) => {
+            const isActive = selectedCategory === category;
+            return (
+              <button
+                key={category}
+                type="button"
+                onClick={() => setSelectedCategory(category)}
+                className={`shrink-0 px-4 sm:px-6 py-2.5 rounded-full font-heading font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 border-2 border-black cursor-pointer ${isActive
+                  ? "bg-[#FF5500] text-white shadow-[2px_2px_0px_0px_#000] translate-x-[-1px] translate-y-[-1px]"
+                  : "bg-white text-black hover:bg-neutral-100"
+                  }`}
+              >
+                {category}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* ── RED MARQUEE BANNER (MATCHES ACTIVE TAB) ── */}

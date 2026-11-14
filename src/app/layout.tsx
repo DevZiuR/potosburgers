@@ -22,8 +22,11 @@ export const metadata: Metadata = {
   description:
     "Las mejores hamburguesas artesanales de El Tigre. Perros calientes, pizzas, papas locas, parrillas, almuerzos y más. CC Z&T, 4ta Carrera Sur.",
   icons: {
-    icon: "/media/logo.jpg",
-    apple: "/media/logo.jpg",
+    icon: [
+      { url: "/potos-logo.png", type: "image/png" },
+    ],
+    shortcut: "/potos-logo.png",
+    apple: "/potos-logo.png",
   },
 };
 
@@ -38,6 +41,9 @@ export default function RootLayout({
       className={`${alumniSans.variable} ${inter.variable} h-full antialiased`}
     >
       <head>
+        <link rel="icon" type="image/png" href="/potos-logo.png" />
+        <link rel="shortcut icon" href="/potos-logo.png" />
+        <link rel="apple-touch-icon" href="/potos-logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

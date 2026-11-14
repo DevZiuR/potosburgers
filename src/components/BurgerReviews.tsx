@@ -38,7 +38,7 @@ const GOOGLE_REVIEWS_URL =
 
 export function BurgerReviews() {
   return (
-    <section className="w-full bg-black text-white select-none">
+    <section className="reveal-section w-full bg-black text-white select-none">
       {/* ── Top Retro Red & Cream Checkerboard Diner Strip ───────────────── */}
       <div
         className="w-full h-6 sm:h-7"
@@ -53,7 +53,7 @@ export function BurgerReviews() {
       <div className="max-w-[1480px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-16 py-16 sm:py-24 md:py-28">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 sm:mb-16">
-          <div>
+          <div className="reveal-item">
             <h2
               className="font-heading uppercase text-white"
               style={{
@@ -75,7 +75,7 @@ export function BurgerReviews() {
             target="_blank"
             rel="noopener noreferrer"
             title="Ver reseñas en Google"
-            className="inline-flex items-center gap-2.5 bg-white text-black px-5 py-2.5 rounded-full shadow-md w-fit hover:bg-neutral-100 hover:scale-105 transition-all cursor-pointer"
+            className="reveal-item inline-flex items-center gap-2.5 bg-white text-black px-5 py-2.5 rounded-full shadow-md w-fit hover:bg-neutral-100 hover:scale-105 transition-all cursor-pointer"
           >
             {/* Google Logo Icon */}
             <svg
@@ -113,7 +113,7 @@ export function BurgerReviews() {
           {reviewsList.map((review) => (
             <div
               key={review.id}
-              className="bg-[#EFECE6] text-black rounded-2xl sm:rounded-3xl p-7 sm:p-9 flex flex-col justify-between shadow-md border-2 border-black hover:translate-y-[-4px] transition-transform duration-300"
+              className="reveal-item bg-[#EFECE6] text-black rounded-2xl sm:rounded-3xl p-7 sm:p-9 flex flex-col justify-between shadow-md border-2 border-black hover:translate-y-[-4px] transition-transform duration-300"
             >
               <div>
                 {/* 5 Red Stars */}

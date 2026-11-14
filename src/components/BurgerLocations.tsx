@@ -39,17 +39,17 @@ export function BurgerLocations() {
   const [selectedLocation, setSelectedLocation] = useState<Location>(locations[0]);
 
   return (
-    <section id="locations" className="w-full bg-[#EFECE6] text-black">
+    <section id="locations" className="reveal-section w-full bg-[#EFECE6] text-black">
       {/* ── Section Content ──────────────────────────────────────────────── */}
       <div className="max-w-[1480px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-16 pt-16 sm:pt-20 md:pt-24 pb-8 sm:pb-12">
         {/* Section Heading & Location Pills */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10">
-          <h2 className="font-heading font-black text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-[-0.03em] uppercase text-black leading-none select-none">
+          <h2 className="reveal-item font-heading font-black text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-[-0.03em] uppercase text-black leading-none select-none">
             ENCUÉNTRANOS
           </h2>
 
           {/* Location Selector Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
+          <div className="reveal-item flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
             {locations.map((loc) => (
               <button
                 key={loc.id}
@@ -67,7 +67,7 @@ export function BurgerLocations() {
         </div>
 
         {/* Featured Storefront Card */}
-        <div className="w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border-2 border-black bg-black flex flex-col">
+        <div className="reveal-item w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border-2 border-black bg-black flex flex-col">
           {/* Storefront Photography */}
           <div className="relative w-full aspect-[16/9] sm:aspect-[21/9] md:aspect-[2.4/1] bg-black overflow-hidden">
             <img
@@ -87,7 +87,7 @@ export function BurgerLocations() {
           </div>
 
           {/* Bottom Black Info Bar */}
-          <div className="bg-black text-white px-6 sm:px-8 md:px-10 py-5 sm:py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-t-2 border-white/10 select-none">
+          <div className="reveal-item bg-black text-white px-6 sm:px-8 md:px-10 py-5 sm:py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-t-2 border-white/10 select-none">
             <div>
               <h3 className="font-heading font-black text-3xl sm:text-4xl md:text-5xl tracking-tight text-white uppercase leading-none mb-2">
                 {selectedLocation.name}

@@ -58,10 +58,10 @@ export function BurgerFaq() {
   };
 
   return (
-    <section id="faq" className="w-full bg-[#EFECE6] text-black pt-6 sm:pt-10 pb-16 sm:pb-24 md:pb-28 select-none">
+    <section id="faq" className="reveal-section w-full bg-[#EFECE6] text-black pt-6 sm:pt-10 pb-16 sm:pb-24 md:pb-28 select-none">
       <div className="max-w-[1480px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-16">
         {/* ── Section Header ────────────────────────────────────────────── */}
-        <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4 mb-10 sm:mb-14">
+        <div className="reveal-item flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-4 mb-10 sm:mb-14">
           <h2 className="font-heading font-black text-6xl sm:text-7xl md:text-8xl lg:text-9xl tracking-[-0.03em] uppercase text-black leading-[0.85]">
             Preguntas Frecuentes
           </h2>
@@ -78,7 +78,7 @@ export function BurgerFaq() {
             return (
               <div
                 key={item.id}
-                className="w-full bg-black text-white rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-200 border-2 border-black shadow-sm"
+                className="reveal-item w-full bg-black text-white rounded-xl sm:rounded-2xl overflow-hidden transition-all duration-200 border-2 border-black shadow-sm"
               >
                 <button
                   type="button"

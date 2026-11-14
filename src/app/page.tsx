@@ -15,6 +15,7 @@ import { BurgerContact } from "@/components/BurgerContact";
 import { BurgerFooter } from "@/components/BurgerFooter";
 import { BurgerOwnerDashboard } from "@/components/BurgerOwnerDashboard";
 import { BurgerCheckoutPage } from "@/components/BurgerCheckoutPage";
+import { ScrollRevealInit } from "@/components/ScrollRevealInit";
 
 export default function Home() {
   const [isAdminRoute, setIsAdminRoute] = useState(false);
@@ -48,6 +49,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
+      {/* ── Scroll Reveal Observer ──────────────────────────────────────── */}
+      <ScrollRevealInit />
+
       {/* ── Intro Preloader Screen ──────────────────────────────────────── */}
       <BurgerPreloader />
 

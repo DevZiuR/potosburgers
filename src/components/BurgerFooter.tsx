@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export function BurgerFooter() {
   return (
-    <footer className="w-full bg-white border-t-2 border-black select-none">
+    <footer className="reveal-section w-full bg-white border-t-2 border-black select-none">
       {/* ── Main Split Footer ──────────────────────────────────────────────── */}
       <div className="w-full grid grid-cols-1 lg:grid-cols-12 border-b-2 border-black">
         {/* ── Left Column: Red-and-White Striped Diner Frame (8 cols on lg) ──── */}
@@ -20,7 +20,7 @@ export function BurgerFooter() {
           <div className="w-full bg-[#FEEAE3] border-2 border-black rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-7 shadow-[6px_6px_0px_0px_#000]">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 items-stretch">
               {/* Photo: footer.png — bigger, prominent full-height display */}
-              <div className="md:col-span-6 lg:col-span-7 relative w-full h-[340px] sm:h-[400px] md:h-full min-h-[340px] md:min-h-[460px] lg:min-h-[500px] rounded-2xl border-2 border-black overflow-hidden bg-black shadow-[4px_4px_0px_0px_#000]">
+              <div className="reveal-item md:col-span-6 lg:col-span-7 relative w-full h-[340px] sm:h-[400px] md:h-full min-h-[340px] md:min-h-[460px] lg:min-h-[500px] rounded-2xl border-2 border-black overflow-hidden bg-black shadow-[4px_4px_0px_0px_#000]">
                 <img
                   src="/media/footer.png"
                   alt="Cliente disfrutando una hamburguesa en Poto’s Burgers"
@@ -31,7 +31,7 @@ export function BurgerFooter() {
               {/* Stacked Information Cards */}
               <div className="md:col-span-6 lg:col-span-5 flex flex-col justify-between gap-4 sm:gap-5">
                 {/* Card 1: ESTAMOS ABIERTOS (WE'RE OPEN) */}
-                <div className="bg-white rounded-2xl border-2 border-black p-5 sm:p-6 flex flex-col justify-center shadow-[4px_4px_0px_0px_#000] flex-1">
+                <div className="reveal-item bg-white rounded-2xl border-2 border-black p-5 sm:p-6 flex flex-col justify-center shadow-[4px_4px_0px_0px_#000] flex-1">
                   <h3 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-wider text-black mb-3">
                     ESTAMOS ABIERTOS
                   </h3>
@@ -42,7 +42,7 @@ export function BurgerFooter() {
                 </div>
 
                 {/* Card 2: CONTACTO (CONTACT) */}
-                <div className="bg-[#E31B23] rounded-2xl border-2 border-black p-5 sm:p-6 flex flex-col justify-center shadow-[4px_4px_0px_0px_#000] flex-1 text-white">
+                <div className="reveal-item bg-[#E31B23] rounded-2xl border-2 border-black p-5 sm:p-6 flex flex-col justify-center shadow-[4px_4px_0px_0px_#000] flex-1 text-white">
                   <h3 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl uppercase tracking-wider text-white mb-2">
                     CONTACTO
                   </h3>
@@ -75,7 +75,7 @@ export function BurgerFooter() {
         {/* ── Right Column: Interactive Menu, Actions & Socials (4 cols on lg) ──── */}
         <div className="lg:col-span-4 flex flex-col bg-white">
           {/* Top Row: Purple (LLÁMANOS) & Blue (EMAIL) Split Blocks */}
-          <div className="w-full grid grid-cols-2 border-b-2 border-black">
+          <div className="reveal-item w-full grid grid-cols-2 border-b-2 border-black">
             {/* LLÁMANOS */}
             <a
               href="tel:+584149813390"
@@ -96,7 +96,7 @@ export function BurgerFooter() {
           </div>
 
           {/* Middle Nav Rows - Distributed evenly with zero dead space */}
-          <div className="flex flex-col flex-1">
+          <div className="reveal-item flex flex-col flex-1">
             <Link
               href="#locations"
               className="w-full flex-1 py-4.5 sm:py-6 px-6 sm:px-8 border-b-2 border-black font-heading font-black text-2xl sm:text-3xl lg:text-4xl uppercase tracking-wider text-black hover:bg-[#FAF9F5] hover:pl-8 sm:hover:pl-10 transition-all flex items-center"
@@ -129,7 +129,7 @@ export function BurgerFooter() {
           </div>
 
           {/* Bottom Social Media Bar: Bigger icons, WhatsApp & Instagram only */}
-          <div className="bg-[#FEEAE3] py-7 sm:py-9 px-6 sm:px-8 flex items-center justify-center sm:justify-start gap-5">
+          <div className="reveal-item bg-[#FEEAE3] py-7 sm:py-9 px-6 sm:px-8 flex items-center justify-center sm:justify-start gap-5">
             {/* WhatsApp Button */}
             <a
               href="https://wa.me/584149813390?text=Hola%2C%20quiero%20hacer%20un%20pedido"
