@@ -1,20 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 @import "tailwindcss";
-
-/* ── Lenis smooth scroll prerequisite ─────────────────────────────────────
-   Tailwind's Preflight injects `scroll-behavior: smooth` on html, which
-   makes the browser handle scrolling natively and Lenis appears to do
-   nothing. We override it here so Lenis owns the scroll entirely.
-   ───────────────────────────────────────────────────────────────────────── */
-html {
-  scroll-behavior: auto !important;
-}
 
 @theme inline {
   /* Type families */
-  --font-heading: var(--font-geist), "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-body: var(--font-geist), "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-serif: var(--font-geist), "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-sans: var(--font-body);
+  --font-alumni-sans: var(--font-alumni-sans), "Alumni Sans", sans-serif;
+  --font-inter: var(--font-inter), Inter, "Inter Placeholder", sans-serif;
+
+  --font-heading: var(--font-alumni-sans), "Alumni Sans", sans-serif;
+  --font-body: var(--font-inter), Inter, "Inter Placeholder", sans-serif;
+  --font-serif: var(--font-alumni-sans), "Alumni Sans", sans-serif;
+  --font-sans: var(--font-inter), Inter, "Inter Placeholder", sans-serif;
+
+  /* Backward compatibility for existing Geist / Host Grotesk references */
+  --font-geist: var(--font-alumni-sans), "Alumni Sans", sans-serif;
+  --font-host-grotesk: var(--font-inter), Inter, "Inter Placeholder", sans-serif;
 
   /* Colors */
   --color-ink: #111111;
@@ -23,19 +22,19 @@ html {
   --color-slate-indigo: #5a6baa;
   --color-lavender-grey: #9b9bd5;
 
-  /* Type scale — optimized for conversion: strong hierarchy, mobile-first fluid */
+  /* Type scale */
   --text-display: clamp(2.5rem, calc(1.5rem + 5vw), 6.5rem);
   --text-display--line-height: 1.02;
   --text-display--letter-spacing: -0.03em;
   --text-display--font-weight: 500;
 
-  --text-h1: clamp(1.75rem, calc(1.5rem + 1.6vw), 3.5rem);
-  --text-h1--line-height: 1.08;
-  --text-h1--letter-spacing: -0.02em;
+  --text-h1: 244px;
+  --text-h1--line-height: 146px;
+  --text-h1--letter-spacing: -4.88px;
 
-  --text-h2: clamp(1.75rem, calc(1.55rem + 1vw), 2.5rem);
-  --text-h2--line-height: 1.15;
-  --text-h2--letter-spacing: -0.015em;
+  --text-h2: 108px;
+  --text-h2--line-height: 86px;
+  --text-h2--letter-spacing: -2.16px;
 
   --text-h3: clamp(1.25rem, calc(1.2rem + 0.4vw), 1.5rem);
   --text-h3--line-height: 1.3;
@@ -46,8 +45,8 @@ html {
   --text-lead: clamp(1.0625rem, calc(1.02rem + 0.3vw), 1.25rem);
   --text-lead--line-height: 1.6;
 
-  --text-body: 1rem;
-  --text-body--line-height: 1.6;
+  --text-body: 16px;
+  --text-body--line-height: 26px;
 
   --text-small: 0.875rem;
   --text-small--line-height: 1.55;
@@ -61,27 +60,62 @@ html {
 body {
   background: #fafaf8;
   color: #111111;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-family: var(--font-inter), Inter, "Inter Placeholder", sans-serif;
+  font-size: 16px;
+  line-height: 26px;
   letter-spacing: -0.005em;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-heading);
-  font-weight: 500;
-  text-wrap: balance;
+/* ── Typography Specifications ─────────────────────────────────────────── */
+@layer base {
+  h1,
+  .h1 {
+    font-family: var(--font-alumni-sans), "Alumni Sans", sans-serif;
+    font-size: 244px;
+    font-weight: 900;
+    line-height: 146px;
+    letter-spacing: -4.88px;
+    text-wrap: balance;
+  }
+
+  h2,
+  .h2 {
+    font-family: var(--font-alumni-sans), "Alumni Sans", sans-serif;
+    font-size: 108px;
+    font-weight: 900;
+    line-height: 86px;
+    letter-spacing: -2.16px;
+    text-wrap: balance;
+  }
+
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  p,
+  .paragraph {
+    font-family: var(--font-inter), Inter, "Inter Placeholder", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px;
+    color: #666;
+    text-wrap: pretty;
+  }
 }
 
-p {
-  text-wrap: pretty;
+@utility font-alumni {
+  font-family: var(--font-alumni-sans), "Alumni Sans", sans-serif;
+}
+
+@utility font-inter {
+  font-family: var(--font-inter), Inter, "Inter Placeholder", sans-serif;
 }
 
 @utility animate-marquee {
@@ -91,5 +125,309 @@ p {
 @keyframes marquee {
   to {
     transform: translateX(-50%);
+  }
+}
+
+/* ── Cart & Checkout Smooth Subtle Animations ───────────────────────────── */
+:root {
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 180ms;
+  --duration-base: 320ms;
+  --duration-slow: 480ms;
+}
+
+/* 1) Drawer & Backdrop */
+@keyframes drawerSlideIn {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes drawerSlideOut {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.55;
+  }
+}
+
+@keyframes overlayFadeOut {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Item rise with stagger */
+@keyframes itemFadeRise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* 2) Header Cart Bump & Counter Pop */
+@keyframes cartBump {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.18);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes badgePop {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.28);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes flyToCart {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  60% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--fly-x, 200px), var(--fly-y, -300px), 0) scale(0.3);
+  }
+}
+
+@keyframes floatingPillSlideUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 32px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* 3) Quantity & Collapse */
+@keyframes qtySwapUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes qtySwapDown {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -6px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes itemCollapse {
+  0% {
+    max-height: 140px;
+    opacity: 1;
+    transform: scale(1);
+    margin-bottom: 1.5rem;
+  }
+  100% {
+    max-height: 0;
+    opacity: 0;
+    transform: scale(0.92);
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+/* 4) Checkout Steps & Feedback */
+@keyframes stepSlideInFromRight {
+  from {
+    opacity: 0;
+    transform: translate3d(24px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes stepSlideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-24px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes copyPop {
+  0% {
+    transform: scale(0.85);
+  }
+  60% {
+    transform: scale(1.18);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes subtlePulse {
+  0%, 100% {
+    box-shadow: 0 4px 14px rgba(214, 35, 0, 0.25);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 6px 24px rgba(214, 35, 0, 0.45);
+    transform: scale(1.008);
+  }
+}
+
+@keyframes confirmScaleFade {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 5) Menu Cards Reveal */
+@keyframes menuCardFadeRise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Helper animation utility classes */
+.animate-cart-bump {
+  animation: cartBump 350ms var(--ease);
+}
+
+.animate-badge-pop {
+  animation: badgePop 350ms var(--ease);
+}
+
+.animate-subtle-pulse {
+  animation: subtlePulse 2.2s infinite var(--ease);
+}
+
+.animate-floating-pill-slide-up {
+  animation: floatingPillSlideUp 350ms var(--ease) forwards;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Layered Collage Tiles ────────────────────────────────────────────────── */
+.collage-tile {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  transform: translate3d(0, var(--tile-parallax, 0px), 0) rotate(var(--tile-rotate, 0deg)) scale(var(--tile-scale, 1));
+  transition: transform 300ms var(--ease), box-shadow 300ms var(--ease);
+  will-change: transform;
+}
+
+/* ── Preloader & Hero Reveal Keyframes ───────────────────────────────────── */
+@keyframes preloaderLogoIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes heroFadeRise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (min-width: 768px) {
+  .collage-tile:hover {
+    z-index: 10 !important;
+    --tile-rotate: 0deg !important;
+    --tile-scale: 1.03 !important;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+  }
+}
+
+@media (max-width: 767px) {
+  .collage-tile {
+    transform: none !important;
+    --tile-rotate: 0deg !important;
+    --tile-parallax: 0px !important;
+    --tile-scale: 1 !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .collage-tile {
+    transform: none !important;
+    --tile-rotate: 0deg !important;
+    --tile-parallax: 0px !important;
+    --tile-scale: 1 !important;
   }
 }
