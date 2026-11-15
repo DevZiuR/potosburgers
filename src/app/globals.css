@@ -432,6 +432,46 @@ body {
   }
 }
 
+/* ── Mobile Nav Drawer Fade-In ───────────────────────────────────────────── */
+@keyframes navDrawerIn {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .nav-drawer-open {
+    animation: navDrawerIn 350ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .nav-drawer-open > * {
+    opacity: 0;
+    animation: heroFadeRise 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* Stagger each direct child of the drawer */
+  .nav-drawer-open > *:nth-child(1) { animation-delay: 40ms; }
+  .nav-drawer-open > *:nth-child(2) { animation-delay: 100ms; }
+  .nav-drawer-open > *:nth-child(3) { animation-delay: 160ms; }
+  .nav-drawer-open > *:nth-child(4) { animation-delay: 220ms; }
+  .nav-drawer-open > *:nth-child(5) { animation-delay: 280ms; }
+  .nav-drawer-open > *:nth-child(6) { animation-delay: 340ms; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-drawer-open,
+  .nav-drawer-open > * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 /* ── Light Fade-In Reveal on Scroll ─────────────────────────────────────── */
 @media (prefers-reduced-motion: no-preference) {
   html.js-reveal .reveal-item {

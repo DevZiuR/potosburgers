@@ -204,7 +204,7 @@ export function BurgerHero() {
 
         {/* ── Open Menu Drawer ─────────────────────────────────────────────── */}
         {menuOpen && (
-          <div className="w-full bg-white border-t-2 border-black flex flex-col z-40">
+          <div className="nav-drawer-open w-full bg-white border-t-2 border-black flex flex-col z-40">
             {/* Link 1: NUESTRO LOCAL */}
             <Link
               href="#locations"
