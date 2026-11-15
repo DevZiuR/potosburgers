@@ -84,8 +84,8 @@ export function playAddSound(): void {
     osc.frequency.setValueAtTime(600, now);
     osc.frequency.exponentialRampToValueAtTime(900, now + 0.12);
 
-    // Gain envelope (louder, crisp volume ~0.25)
-    gain.gain.setValueAtTime(0.25, now);
+    // Gain envelope (louder, crisp volume ~0.55)
+    gain.gain.setValueAtTime(0.55, now);
     gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
 
     osc.connect(gain);
@@ -113,7 +113,7 @@ export function playTickSound(): void {
     osc.frequency.setValueAtTime(750, now);
     osc.frequency.exponentialRampToValueAtTime(350, now + 0.04);
 
-    gain.gain.setValueAtTime(0.18, now);
+    gain.gain.setValueAtTime(0.42, now);
     gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
 
     osc.connect(gain);
@@ -141,7 +141,7 @@ export function playClickSound(): void {
     osc.frequency.setValueAtTime(480, now);
     osc.frequency.exponentialRampToValueAtTime(240, now + 0.06);
 
-    gain.gain.setValueAtTime(0.22, now);
+    gain.gain.setValueAtTime(0.50, now);
     gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
 
     osc.connect(gain);
@@ -168,7 +168,7 @@ export function playWhatsAppChime(): void {
     const gain1 = ctx.createGain();
     osc1.type = "sine";
     osc1.frequency.setValueAtTime(660, now);
-    gain1.gain.setValueAtTime(0.24, now);
+    gain1.gain.setValueAtTime(0.55, now);
     gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
     osc1.connect(gain1);
     gain1.connect(ctx.destination);
@@ -180,7 +180,7 @@ export function playWhatsAppChime(): void {
     const gain2 = ctx.createGain();
     osc2.type = "sine";
     osc2.frequency.setValueAtTime(880, now + 0.14);
-    gain2.gain.setValueAtTime(0.24, now + 0.14);
+    gain2.gain.setValueAtTime(0.55, now + 0.14);
     gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.29);
     osc2.connect(gain2);
     gain2.connect(ctx.destination);
@@ -211,7 +211,7 @@ export function playConfirmationChime(): void {
       osc.type = "sine";
       osc.frequency.setValueAtTime(freq, startTime);
 
-      gain.gain.setValueAtTime(0.22, startTime);
+      gain.gain.setValueAtTime(0.52, startTime);
       gain.gain.exponentialRampToValueAtTime(0.001, startTime + noteDuration);
 
       osc.connect(gain);
