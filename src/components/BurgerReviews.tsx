@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
+import Image from "next/image";
 
 interface Review {
   id: string;
@@ -37,6 +38,32 @@ const GOOGLE_REVIEWS_URL =
   "https://www.google.com/search?q=potos+burger&ie=UTF-8#lrd=0x8dcd8329d14487ab:0x2891c933af31eafe,1,,,,";
 
 export function BurgerReviews() {
+  const centerCardRef = useRef<HTMLDivElement>(null);
+  const [isPeekingInView, setIsPeekingInView] = useState(false);
+
+  useEffect(() => {
+    const card = centerCardRef.current;
+    if (!card) return;
+
+    if (!("IntersectionObserver" in window)) {
+      setIsPeekingInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsPeekingInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(card);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="reveal-section w-full bg-black text-white select-none">
       {/* ── Top Retro Red & Cream Checkerboard Diner Strip ───────────────── */}
@@ -52,7 +79,7 @@ export function BurgerReviews() {
       {/* ── Section Content ──────────────────────────────────────────────── */}
       <div className="max-w-[1480px] mx-auto px-6 sm:px-10 lg:px-14 xl:px-16 py-16 sm:py-24 md:py-28">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 sm:mb-16">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 sm:mb-16 md:mb-32 lg:mb-36">
           <div className="reveal-item">
             <h2
               className="font-heading uppercase text-white"
@@ -65,7 +92,7 @@ export function BurgerReviews() {
               }}
             >
               <span className="block">LO QUE DICEN</span>
-              <span className="block">NUESTRO CLIENTES</span>
+              <span className="block">NUESTROS CLIENTES</span>
             </h2>
           </div>
 
@@ -110,39 +137,78 @@ export function BurgerReviews() {
 
         {/* ── 3 Reviews Cards Grid ────────────────────────────────────────── */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {reviewsList.map((review) => (
-            <div
-              key={review.id}
-              className="reveal-item bg-[#EFECE6] text-black rounded-2xl sm:rounded-3xl p-7 sm:p-9 flex flex-col justify-between shadow-md border-2 border-black hover:translate-y-[-4px] transition-transform duration-300"
-            >
-              <div>
-                {/* 5 Red Stars */}
-                <div className="flex items-center gap-1 mb-6 text-[#E31B23]">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className="w-5 h-5 fill-[#E31B23]"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
+          {reviewsList.map((review, index) => {
+            const isCenterCard = index === 1;
+            return (
+              <div
+                key={review.id}
+                ref={isCenterCard ? centerCardRef : undefined}
+                className={`reveal-item bg-[#EFECE6] text-black rounded-2xl sm:rounded-3xl p-7 sm:p-9 flex flex-col justify-between shadow-md border-2 border-black hover:translate-y-[-4px] transition-transform duration-300 ${isCenterCard ? "relative overflow-visible mt-20 md:mt-0" : ""
+                  }`}
+              >
+                {/* ── Peeking Mascot above the center review card ── */}
+                {isCenterCard && (
+                  <div className="absolute bottom-full mb-[-14px] sm:mb-[-17px] left-1/2 -translate-x-1/2 w-[130px] sm:w-[150px] md:w-[160px] h-[87px] sm:h-[100px] md:h-[107px] overflow-hidden pointer-events-none z-10">
+                    <div
+                      className={
+                        isPeekingInView
+                          ? "mascot-peeking-entrance w-full h-full"
+                          : "translate-y-full w-full h-full"
+                      }
                     >
-                      <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                    </svg>
-                  ))}
+                      <div
+                        className={
+                          isPeekingInView
+                            ? "mascot-peeking-bob w-full h-full"
+                            : "w-full h-full"
+                        }
+                      >
+                        <Image
+                          src="/media/graphics/peeking-over.png"
+                          alt="Mascota asomándose"
+                          width={1536}
+                          height={1024}
+                          priority={false}
+                          className="w-full h-auto select-none block"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <div>
+                  {/* 5 Red Stars */}
+                  <div className="flex items-center gap-1 mb-6 text-[#E31B23]">
+                    {[...Array(5)].map((_, i) => (
+                      <svg
+                        key={i}
+                        className="w-5 h-5 fill-[#E31B23]"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                      </svg>
+                    ))}
+                  </div>
+
+                  {/* Review Text */}
+                  <p className="font-sans text-neutral-900 text-sm sm:text-base leading-relaxed font-semibold mb-8">
+                    {review.quote}
+                  </p>
                 </div>
 
-                {/* Review Text */}
-                <p className="font-sans text-neutral-900 text-sm sm:text-base leading-relaxed font-semibold mb-8">
-                  {review.quote}
-                </p>
+                {/* Author & Source */}
+                <div className="font-sans text-xs font-bold uppercase text-neutral-800 pt-4 border-t border-black/15 flex items-center justify-between gap-4">
+                  <span className="tracking-[0.1em] leading-tight break-words min-w-0">
+                    {review.author}
+                  </span>
+                  <span className="text-[#E31B23] font-black tracking-[0.14em] shrink-0">
+                    {review.platform}
+                  </span>
+                </div>
               </div>
-
-              {/* Author & Source */}
-              <div className="font-sans text-xs font-bold uppercase tracking-[0.2em] text-neutral-800 pt-4 border-t border-black/15 flex items-center justify-between">
-                <span>{review.author}</span>
-                <span className="text-[#E31B23] font-black">{review.platform}</span>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* ── Bottom CTA Button to View All Google Reviews ────────────────── */}

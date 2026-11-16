@@ -547,6 +547,101 @@ body {
     animation: none !important;
     transform: none !important;
   }
+  .mascot-pointing-entrance {
+    animation: mascotFadeIn 700ms ease forwards !important;
+    transform: none !important;
+  }
+  .mascot-pointing-sway {
+    animation: none !important;
+    transform: none !important;
+  }
+  .mascot-pointing-hover {
+    transition: none !important;
+  }
+  .mascot-pointing-hover:hover {
+    transform: none !important;
+  }
+  .mascot-peeking-entrance {
+    animation: mascotFadeIn 600ms ease forwards !important;
+    transform: translateY(0) !important;
+  }
+  .mascot-peeking-bob {
+    animation: none !important;
+    transform: none !important;
+  }
 }
+
+/* ── Statement Section: Pointing Mascot ────────────────────────────────── */
+@keyframes mascotPointingSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes mascotPointingSway {
+  0%, 100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+.mascot-pointing-entrance {
+  animation: mascotPointingSlideIn 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform, opacity;
+}
+
+.mascot-pointing-sway {
+  animation: mascotPointingSway 3.5s ease-in-out 700ms infinite;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.mascot-pointing-hover {
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: center center;
+}
+
+@media (min-width: 900px) {
+  .mascot-pointing-hover:hover {
+    transform: scale(1.03) rotate(5deg);
+  }
+}
+
+/* ── Reviews Section: Peeking Mascot ────────────────────────────────────── */
+@keyframes mascotPeekingSlideUp {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes mascotBob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.mascot-peeking-entrance {
+  animation: mascotPeekingSlideUp 600ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: transform;
+}
+
+.mascot-peeking-bob {
+  animation: mascotBob 2.5s ease-in-out 600ms infinite;
+  will-change: transform;
+}
+
 
 

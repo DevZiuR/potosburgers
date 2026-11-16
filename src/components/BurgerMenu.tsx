@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { BurgerCartDrawer, CartItem } from "./BurgerCartDrawer";
 import {
   playAddSound,
@@ -43,6 +44,16 @@ const categories = [
 ] as const;
 
 type Category = (typeof categories)[number];
+
+const categoryIcons: Record<Category, string> = {
+  Hamburguesas: "/media/icons/01-smash-burger.png",
+  "Perros calientes": "/media/icons/02-hot-dog.png",
+  Pizzas: "/media/icons/03-pizza-slice.png",
+  "Papas locas": "/media/icons/04-loaded-fries.png",
+  Parrillas: "/media/icons/05-grilled-skewer.png",
+  Almuerzos: "/media/icons/08-flame.png",
+  Postres: "/media/icons/07-ice-cream.png",
+};
 
 const menuByCategory: Record<Category, MenuItem[]> = {
   Hamburguesas: [
@@ -585,7 +596,7 @@ export function BurgerMenu() {
         </div>
 
         {/* ── Category Tabs Bar ────────────────────────────────────────────── */}
-        <div className="reveal-item w-full bg-[#FAF9F5] border-b-2 border-black px-4 sm:px-8 lg:px-14 py-4 overflow-x-auto scrollbar-none flex items-center gap-2 sm:gap-3">
+        <div className="reveal-item w-full bg-[#FAF9F5] border-b-2 border-black px-4 sm:px-8 lg:px-14 py-3.5 sm:py-4 overflow-x-auto scrollbar-none flex items-center gap-2 sm:gap-3">
           {categories.map((category) => {
             const isActive = selectedCategory === category;
             return (
@@ -593,15 +604,43 @@ export function BurgerMenu() {
                 key={category}
                 type="button"
                 onClick={() => setSelectedCategory(category)}
-                className={`shrink-0 px-4 sm:px-6 py-2.5 rounded-full font-heading font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 border-2 border-black cursor-pointer ${isActive
+                className={`shrink-0 inline-flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full font-heading font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 border-2 border-black cursor-pointer select-none ${isActive
                   ? "bg-[#FF5500] text-white shadow-[2px_2px_0px_0px_#000] translate-x-[-1px] translate-y-[-1px]"
                   : "bg-white text-black hover:bg-neutral-100"
                   }`}
               >
-                {category}
+                <Image
+                  src={categoryIcons[category]}
+                  alt=""
+                  width={48}
+                  height={48}
+                  className="w-5 h-5 sm:w-6 sm:h-6 object-contain shrink-0"
+                />
+                <span>{category}</span>
               </button>
             );
           })}
+
+          {/* Bebidas Tab Shortcut */}
+          <button
+            type="button"
+            onClick={() => {
+              const el = document.getElementById("bebidas");
+              if (el) {
+                el.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+            className="shrink-0 inline-flex items-center gap-2 sm:gap-2.5 px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full font-heading font-black text-xs sm:text-sm uppercase tracking-wider transition-all duration-200 border-2 border-black cursor-pointer select-none bg-white text-black hover:bg-neutral-100"
+          >
+            <Image
+              src="/media/icons/06-soda-cup.png"
+              alt=""
+              width={48}
+              height={48}
+              className="w-5 h-5 sm:w-6 sm:h-6 object-contain shrink-0"
+            />
+            <span>Bebidas</span>
+          </button>
         </div>
       </div>
 
@@ -685,7 +724,7 @@ export function BurgerMenu() {
       </div>
 
       {/* ── BEBIDAS BANNER ── */}
-      <div className="w-full bg-[#0a0a0a] border-b-2 border-black py-3 sm:py-3.5 overflow-hidden">
+      <div id="bebidas" className="w-full bg-[#0a0a0a] border-b-2 border-black py-3 sm:py-3.5 overflow-hidden">
         <div className="flex items-center gap-8 whitespace-nowrap animate-marquee">
           {[...Array(10)].map((_, i) => (
             <span
