@@ -56,7 +56,7 @@ const menuByCategory: Record<Category, MenuItem[]> = {
     },
     {
       id: "h-chicken-spicy-sweet",
-      name: "CHICKEN SPICY-SWEET 🔥",
+      name: "CHICKEN SPICY-SWEET",
       description:
         "Una explosión de sabor que te hará volver por más.",
       price: "$8.50",
@@ -64,7 +64,7 @@ const menuByCategory: Record<Category, MenuItem[]> = {
     },
     {
       id: "h-poto-extrema",
-      name: "POTO EXTREMA! 🔥",
+      name: "POTO EXTREMA!",
       description:
         "No es una hamburguesa… es un verdadero desafío para los amantes del sabor.",
       price: "$11.00",
@@ -685,15 +685,19 @@ export function BurgerMenu() {
       </div>
 
       {/* ── BEBIDAS BANNER ── */}
-      <div className="w-full bg-[#0057B7] border-b-2 border-black py-3 sm:py-3.5 overflow-hidden">
+      <div className="w-full bg-[#0a0a0a] border-b-2 border-black py-3 sm:py-3.5 overflow-hidden">
         <div className="flex items-center gap-8 whitespace-nowrap animate-marquee">
-          {[...Array(12)].map((_, i) => (
+          {[...Array(10)].map((_, i) => (
             <span
               key={i}
               className="flex items-center gap-8 text-white font-heading font-black text-2xl sm:text-3xl lg:text-4xl tracking-wider uppercase select-none"
             >
               <span>BEBIDAS</span>
-              <span className="text-white/80">✦</span>
+              <span className="text-[#FF5500]">*</span>
+              <span>BEBIDAS</span>
+              <span className="text-[#FF5500]">*</span>
+              <span>BEBIDAS</span>
+              <span className="text-[#FF5500]">*</span>
             </span>
           ))}
         </div>

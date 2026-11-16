@@ -6,7 +6,7 @@ export function BurgerStory() {
   return (
     <section
       id="about"
-      className="reveal-section w-full bg-white text-black border-t-2 border-b-2 border-black select-none"
+      className="reveal-section w-full bg-white text-black border-t-2 border-b-2 border-black select-none pb-[96px]"
     >
       <div className="w-full grid grid-cols-1 lg:grid-cols-2 min-h-[520px] sm:min-h-[580px] lg:min-h-[640px]">
         {/* ── Left Column: Feast Photography ──────────────────────────────── */}
@@ -22,7 +22,7 @@ export function BurgerStory() {
 
         {/* ── Right Column: Black & White Checkerboard with Floating Card ─── */}
         <div
-          className="w-full h-full min-h-[460px] sm:min-h-[520px] lg:min-h-full flex items-center justify-center p-6 sm:p-10 md:p-12 lg:p-14 pb-[96px] sm:pb-[96px] lg:pb-[96px]"
+          className="w-full h-full min-h-[460px] sm:min-h-[520px] lg:min-h-full flex items-center justify-center p-6 sm:p-10 md:p-12 lg:p-14"
           style={{
             background:
               "repeating-conic-gradient(#000000 0% 25%, #FFFFFF 0% 50%) 0 0 / 64px 64px",
