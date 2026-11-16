@@ -18,9 +18,33 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Poto's Burgers | El Tigre, Anzoátegui",
+  title: "Poto's Burgers | Las Mejores Hamburguesas Artesanales en El Tigre",
   description:
-    "Las mejores hamburguesas artesanales de El Tigre. Perros calientes, pizzas, papas locas, parrillas, almuerzos y más. CC Z&T, 4ta Carrera Sur.",
+    "Las mejores hamburguesas artesanales en El Tigre, Anzoátegui. Smash burgers, perros calientes, pizzas, papas locas, parrillas y postres. ¡Pide online o visítanos en CC Z&T!",
+  keywords: [
+    "Hamburguesas El Tigre",
+    "Poto's Burgers",
+    "Hamburguesas artesanales El Tigre",
+    "Smash burgers El Tigre",
+    "Comida rápida El Tigre",
+    "Parrillas El Tigre",
+    "Perros calientes El Tigre",
+    "Delivery El Tigre Anzoátegui",
+  ],
+  openGraph: {
+    title: "Poto's Burgers | Las Mejores Hamburguesas Artesanales en El Tigre",
+    description:
+      "¡El sabor que manda en El Tigre! Hamburguesas artesanales, perros calientes, pizzas, papas locas y parrillas. Pide online con entrega rápida.",
+    siteName: "Poto's Burgers",
+    locale: "es_VE",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Poto's Burgers | Las Mejores Hamburguesas Artesanales en El Tigre",
+    description:
+      "¡El sabor que manda en El Tigre! Hamburguesas artesanales, perros calientes, pizzas, papas locas y parrillas.",
+  },
   icons: {
     icon: [
       { url: "/potos-logo.png", type: "image/png" },

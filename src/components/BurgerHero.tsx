@@ -297,18 +297,6 @@ export function BurgerHero() {
 
           {/* Right Column: Poster-Style Typography (Order 2 on mobile: displays H1 after image) */}
           <div className="relative bg-[#EFECE6] text-black flex flex-col justify-center p-6 sm:p-8 md:p-10 lg:p-10 xl:p-14 overflow-hidden select-none min-h-[460px] lg:min-h-full order-2">
-            {/* Decorative Sticker */}
-            <div className="absolute top-6 right-6 sm:top-8 sm:right-8 lg:top-8 lg:right-10 z-10 pointer-events-none">
-              <div className="w-18 h-18 sm:w-22 sm:h-22 md:w-24 md:h-24 rounded-full bg-[#0a0a0a] border-2 border-[#E31B23] -rotate-[16deg] shadow-xl flex flex-col items-center justify-center text-center p-2">
-                <span className="font-heading font-black text-[#E31B23] text-lg sm:text-2xl md:text-3xl leading-none tracking-tight">
-                  SABOR
-                </span>
-                <span className="font-sans font-bold text-[#E31B23] text-[8px] sm:text-[9px] tracking-[0.25em] uppercase mt-0.5">
-                  BRUTAL
-                </span>
-              </div>
-            </div>
-
             <div className="w-full max-w-3xl pt-6 pb-24 sm:py-8">
               {/* Giant Heading */}
               <h1 className="font-heading font-black uppercase tracking-[-0.035em] text-[clamp(5.6rem,16.5vw,8.5rem)] sm:text-[clamp(5.4rem,8.5vw,8.8rem)] xl:text-[9.8rem] 2xl:text-[12rem] leading-[0.78] sm:leading-[0.78] text-black select-none">
