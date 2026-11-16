@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { playClickSound, initAudioContext } from "@/utils/soundEffects";
 import {
   getCartCount,
@@ -284,7 +285,7 @@ export function BurgerHero() {
 
       {/* ── Split Hero Section ─────────────────────────────────────────────── */}
       <div className="w-full bg-black text-white flex flex-col">
-        <section className="w-full grid grid-cols-1 lg:grid-cols-2 min-h-[calc(100vh-80px)]">
+        <section className="relative w-full grid grid-cols-1 lg:grid-cols-2 min-h-[calc(100vh-80px)]">
           {/* Left Column: Burger Image (Order 1 on mobile: displays first) */}
           <div className="relative bg-black min-h-[340px] sm:min-h-[440px] lg:min-h-full w-full flex items-center justify-center overflow-hidden border-b lg:border-b-0 lg:border-r border-white/10 order-1">
             <img
@@ -358,6 +359,37 @@ export function BurgerHero() {
                 >
                   Ver menú
                 </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* ── Mascot Image (straddling the seam at the bottom of the hero) ── */}
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 pointer-events-none hidden sm:block">
+            <div
+              style={
+                isRevealed
+                  ? {
+                      animation:
+                        "mascotEntrance 500ms cubic-bezier(0.34, 1.56, 0.64, 1) 600ms both",
+                    }
+                  : { opacity: 0 }
+              }
+              className="mascot-entrance"
+            >
+              <div className="-rotate-6">
+                <div className="mascot-float">
+                  <Image
+                    src="/media/graphics/mascot.png"
+                    alt="Mascota de Poto's Burgers"
+                    width={170}
+                    height={155}
+                    priority
+                    className="w-[110px] lg:w-[170px] h-auto select-none"
+                    style={{
+                      filter: "drop-shadow(0 10px 20px rgba(0, 0, 0, 0.25))",
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>

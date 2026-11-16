@@ -497,3 +497,56 @@ body {
   }
 }
 
+/* ── Hero Mascot Keyframes & Animations ─────────────────────────────────── */
+@keyframes mascotEntrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.35);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  85% {
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes mascotFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes mascotFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.mascot-float {
+  animation: mascotFloat 3s ease-in-out infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mascot-entrance {
+    animation: mascotFadeIn 400ms ease 600ms both !important;
+  }
+  .mascot-float {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+
