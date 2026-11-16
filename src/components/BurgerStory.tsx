@@ -22,7 +22,7 @@ export function BurgerStory() {
 
         {/* ── Right Column: Black & White Checkerboard with Floating Card ─── */}
         <div
-          className="w-full h-full min-h-[460px] sm:min-h-[520px] lg:min-h-full flex items-center justify-center p-6 sm:p-10 md:p-12 lg:p-14"
+          className="w-full h-full min-h-[460px] sm:min-h-[520px] lg:min-h-full flex items-center justify-center p-6 sm:p-10 md:p-12 lg:p-14 pb-[96px] sm:pb-[96px] lg:pb-[96px]"
           style={{
             background:
               "repeating-conic-gradient(#000000 0% 25%, #FFFFFF 0% 50%) 0 0 / 64px 64px",

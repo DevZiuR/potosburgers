@@ -625,7 +625,7 @@ export function BurgerMenu() {
       </div>
 
       {/* ── Brutalist 3-Column Menu Grid (Matches Reference Image) ── */}
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="w-full grid items-stretch grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {currentItems.map((item, idx) => {
           const isVisible = visibleCardIds.has(item.id);
           const staggerDelay = (idx % 3) * 60; // 60ms stagger within a row
@@ -640,10 +640,10 @@ export function BurgerMenu() {
                 transition: `opacity 450ms var(--ease) ${staggerDelay}ms, transform 450ms var(--ease) ${staggerDelay}ms, box-shadow 250ms var(--ease)`,
                 willChange: isVisible ? "auto" : "transform, opacity",
               }}
-              className="flex flex-col justify-between bg-white border-b-2 border-black md:border-r-2 hover:md:-translate-y-1 hover:md:shadow-xl hover:md:z-10 transition-transform duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
+              className="flex flex-col justify-between bg-white border-b-2 border-black md:border-r-2 hover:md:-translate-y-1 hover:md:shadow-xl hover:md:z-10 transition-transform duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] h-full"
             >
               {/* 1. Item Photo */}
-              <div className="relative w-full aspect-[4/3] sm:aspect-square md:aspect-[4/3] bg-black overflow-hidden border-b-2 border-black group">
+              <div className="relative w-full aspect-[4/3] sm:aspect-square md:aspect-[4/3] bg-black overflow-hidden border-b-2 border-black group shrink-0">
                 <img
                   src={item.image}
                   alt={item.name}
@@ -652,7 +652,7 @@ export function BurgerMenu() {
               </div>
 
               {/* 2. Title & Description Block */}
-              <div className="p-6 sm:p-7 text-center flex flex-col justify-center border-b-2 border-black min-h-[140px] bg-white">
+              <div className="flex-1 p-6 sm:p-7 text-center flex flex-col justify-center min-h-[140px] bg-white">
                 <h3 className="font-heading font-black text-3xl sm:text-4xl lg:text-[2.6rem] uppercase tracking-wider text-black mb-2 leading-none">
                   {item.name}
                 </h3>
@@ -662,7 +662,7 @@ export function BurgerMenu() {
               </div>
 
               {/* 3. Solid Red Price & Add Bar */}
-              <div className="w-full bg-[#E31B23] py-3 sm:py-3.5 px-5 sm:px-6 flex items-center justify-between border-t-2 border-black">
+              <div className="w-full bg-[#E31B23] py-3 sm:py-3.5 px-5 sm:px-6 flex items-center justify-between mt-auto shrink-0">
                 <span className="font-heading font-black text-3xl sm:text-4xl tracking-tight leading-none text-white select-none">
                   {item.price}
                 </span>
