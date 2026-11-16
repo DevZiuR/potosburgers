@@ -346,7 +346,7 @@ export function BurgerCheckoutPage() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Ej. Carlos Pérez"
-                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm bg-neutral-50/50 focus:bg-white focus:border-[#E31B23] focus:ring-2 focus:ring-[#E31B23]/10 transition-all outline-hidden font-medium"
+                      className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm bg-neutral-100 focus:bg-neutral-50 focus:border-[#E31B23] focus:ring-2 focus:ring-[#E31B23]/10 transition-all outline-hidden font-medium"
                     />
                   </div>
 
@@ -360,7 +360,7 @@ export function BurgerCheckoutPage() {
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="Ej. 0414-9813390"
-                        className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm bg-neutral-50/50 focus:bg-white focus:border-[#E31B23] focus:ring-2 focus:ring-[#E31B23]/10 transition-all outline-hidden font-medium"
+                        className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm bg-neutral-100 focus:bg-neutral-50 focus:border-[#E31B23] focus:ring-2 focus:ring-[#E31B23]/10 transition-all outline-hidden font-medium"
                       />
                     </div>
 
@@ -374,7 +374,7 @@ export function BurgerCheckoutPage() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="tucorreo@ejemplo.com"
-                        className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm bg-neutral-50/50 focus:bg-white focus:border-[#E31B23] focus:ring-2 focus:ring-[#E31B23]/10 transition-all outline-hidden font-medium"
+                        className="w-full rounded-xl border border-neutral-200 px-4 py-3 text-sm bg-neutral-100 focus:bg-neutral-50 focus:border-[#E31B23] focus:ring-2 focus:ring-[#E31B23]/10 transition-all outline-hidden font-medium"
                       />
                     </div>
                   </div>
@@ -480,7 +480,7 @@ export function BurgerCheckoutPage() {
                               value={streetAddress}
                               onChange={(e) => setStreetAddress(e.target.value)}
                               placeholder="Ej. 4ta Carrera Sur, entre calles 15 y 16, Casa #42"
-                              className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm bg-white focus:border-[#E31B23] outline-hidden"
+                              className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm bg-neutral-100 focus:border-[#E31B23] outline-hidden"
                             />
                           </div>
 
@@ -494,7 +494,7 @@ export function BurgerCheckoutPage() {
                                 value={sector}
                                 onChange={(e) => setSector(e.target.value)}
                                 placeholder="Ej. Casco Viejo / Pueblo Nuevo"
-                                className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm bg-white focus:border-[#E31B23] outline-hidden"
+                                className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm bg-neutral-100 focus:border-[#E31B23] outline-hidden"
                               />
                             </div>
                             <div>
@@ -506,7 +506,7 @@ export function BurgerCheckoutPage() {
                                 value={reference}
                                 onChange={(e) => setReference(e.target.value)}
                                 placeholder="Ej. Frente a la farmacia, portón rojo"
-                                className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm bg-white focus:border-[#E31B23] outline-hidden"
+                                className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-sm bg-neutral-100 focus:border-[#E31B23] outline-hidden"
                               />
                             </div>
                           </div>
@@ -581,7 +581,7 @@ export function BurgerCheckoutPage() {
                         value={scheduledTime}
                         onChange={(e) => setScheduledTime(e.target.value)}
                         placeholder="Ej. Hoy para las 8:30 PM"
-                        className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-xs bg-white focus:border-[#E31B23] outline-hidden"
+                        className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-xs bg-neutral-100 focus:border-[#E31B23] outline-hidden"
                       />
                     </div>
                   )}
@@ -648,7 +648,7 @@ export function BurgerCheckoutPage() {
                             value={referenceNumber}
                             onChange={(e) => setReferenceNumber(e.target.value)}
                             placeholder="Ej. 4921"
-                            className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-xs bg-white focus:border-[#E31B23] outline-hidden"
+                            className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-xs bg-neutral-100 focus:border-[#E31B23] outline-hidden"
                           />
                         </div>
                         <div>
@@ -660,7 +660,7 @@ export function BurgerCheckoutPage() {
                             value={accountHolder}
                             onChange={(e) => setAccountHolder(e.target.value)}
                             placeholder="Ej. Carlos Pérez"
-                            className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-xs bg-white focus:border-[#E31B23] outline-hidden"
+                            className="w-full rounded-lg border border-neutral-200 px-3 py-2 text-xs bg-neutral-100 focus:border-[#E31B23] outline-hidden"
                           />
                         </div>
                       </div>
@@ -924,7 +924,7 @@ export function BurgerCheckoutPage() {
                     value={couponCode}
                     onChange={(e) => setCouponCode(e.target.value)}
                     placeholder="Ejemplo: POTOS10"
-                    className="flex-1 rounded-xl border border-neutral-200 px-3.5 py-2.5 text-xs bg-neutral-50/50 uppercase font-bold tracking-wider focus:bg-white focus:border-[#E31B23] outline-hidden"
+                    className="flex-1 rounded-xl border border-neutral-200 px-3.5 py-2.5 text-xs bg-neutral-100 uppercase font-bold tracking-wider focus:bg-neutral-50 focus:border-[#E31B23] outline-hidden"
                   />
                   <button
                     type="submit"
@@ -1039,7 +1039,7 @@ export function BurgerCheckoutPage() {
                           value={businessName}
                           onChange={(e) => setBusinessName(e.target.value)}
                           placeholder="Empresa C.A."
-                          className="w-full rounded-lg border border-neutral-200 px-3 py-1.5 bg-white text-xs"
+                          className="w-full rounded-lg border border-neutral-200 px-3 py-1.5 bg-neutral-100 text-xs"
                         />
                       </div>
                       <div>
@@ -1051,7 +1051,7 @@ export function BurgerCheckoutPage() {
                           value={rif}
                           onChange={(e) => setRif(e.target.value)}
                           placeholder="J-12345678-0"
-                          className="w-full rounded-lg border border-neutral-200 px-3 py-1.5 bg-white text-xs"
+                          className="w-full rounded-lg border border-neutral-200 px-3 py-1.5 bg-neutral-100 text-xs"
                         />
                       </div>
                     </div>
