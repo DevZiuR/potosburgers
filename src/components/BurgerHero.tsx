@@ -309,7 +309,7 @@ export function BurgerHero() {
               </div>
             </div>
 
-            <div className="w-full max-w-3xl py-6 sm:py-8">
+            <div className="w-full max-w-3xl pt-6 pb-24 sm:py-8">
               {/* Giant Heading */}
               <h1 className="font-heading font-black uppercase tracking-[-0.035em] text-[clamp(5.6rem,16.5vw,8.5rem)] sm:text-[clamp(5.4rem,8.5vw,8.8rem)] xl:text-[9.8rem] 2xl:text-[12rem] leading-[0.78] sm:leading-[0.78] text-black select-none">
                 <span
@@ -364,7 +364,7 @@ export function BurgerHero() {
           </div>
 
           {/* ── Mascot Image (straddling the seam at the bottom of the hero) ── */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 pointer-events-none hidden sm:block">
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
             <div
               style={
                 isRevealed
