@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { BurgerCartDrawer, CartItem } from "./BurgerCartDrawer";
 import {
   playAddSound,
+  playTickSound,
   getIsMuted,
   toggleMute,
   subscribeMuteChange,
@@ -55,9 +56,9 @@ const menuByCategory: Record<Category, MenuItem[]> = {
     },
     {
       id: "h-chicken-spicy-sweet",
-      name: "🔥 CHICKEN SPICY-SWEET 🔥",
+      name: "CHICKEN SPICY-SWEET 🔥",
       description:
-        "Una explosión de sabor que te hará volver por más. 😍",
+        "Una explosión de sabor que te hará volver por más.",
       price: "$8.50",
       image: "/media/buruger2.jpg",
     },
@@ -65,7 +66,7 @@ const menuByCategory: Record<Category, MenuItem[]> = {
       id: "h-poto-extrema",
       name: "POTO EXTREMA! 🔥",
       description:
-        "No es una hamburguesa… es un verdadero desafío para los amantes del sabor. 🍔🤤",
+        "No es una hamburguesa… es un verdadero desafío para los amantes del sabor.",
       price: "$11.00",
       image: "/media/burger3.jpg",
     },
@@ -332,6 +333,101 @@ function parsePrice(priceStr: string): number {
   return isNaN(num) ? 0 : num;
 }
 
+interface MenuAddButtonProps {
+  item: {
+    id: string;
+    name: string;
+    price: string;
+    image?: string;
+  };
+  quantity: number;
+  onAdd: (
+    item: { id: string; name: string; price: string; image?: string },
+    e?: React.MouseEvent
+  ) => void;
+  onUpdateQty: (id: string, delta: number) => void;
+}
+
+function MenuAddButton({
+  item,
+  quantity,
+  onAdd,
+  onUpdateQty,
+}: MenuAddButtonProps) {
+  if (quantity === 0) {
+    return (
+      <button
+        type="button"
+        onClick={(e) => onAdd(item, e)}
+        aria-label={`Agregar ${item.name} al carrito`}
+        title={`Agregar ${item.name} al carrito`}
+        className="w-[44px] h-[44px] md:w-[40px] md:h-[40px] rounded-full bg-[#FF5500] hover:bg-[#E04B00] text-white flex items-center justify-center shrink-0 border border-black shadow-xs active:scale-90 transition-transform duration-[180ms] ease-out cursor-pointer"
+      >
+        <svg
+          className="w-5 h-5 md:w-4.5 md:h-4.5 text-white pointer-events-none"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2.6}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+      </button>
+    );
+  }
+
+  return (
+    <div
+      className="h-[44px] md:h-[40px] rounded-full bg-[#FF5500] text-white flex items-center justify-between px-1.5 border border-black shadow-xs shrink-0 select-none"
+      role="group"
+      aria-label={`Cantidad de ${item.name}`}
+    >
+      <button
+        type="button"
+        onClick={() => onUpdateQty(item.id, -1)}
+        aria-label={`Quitar uno de ${item.name}`}
+        title={`Quitar uno de ${item.name}`}
+        className="w-8 h-8 md:w-7 md:h-7 rounded-full flex items-center justify-center hover:bg-black/20 text-white active:scale-90 transition-transform duration-[180ms] ease-out cursor-pointer"
+      >
+        <svg
+          className="w-4 h-4 md:w-3.5 md:h-3.5 text-white pointer-events-none"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2.6}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
+        </svg>
+      </button>
+
+      <span
+        className="font-heading font-black text-lg md:text-xl text-white px-2 min-w-[20px] text-center leading-none"
+        aria-live="polite"
+      >
+        {quantity}
+      </span>
+
+      <button
+        type="button"
+        onClick={(e) => onAdd(item, e)}
+        aria-label={`Agregar otro ${item.name} al carrito`}
+        title={`Agregar otro ${item.name} al carrito`}
+        className="w-8 h-8 md:w-7 md:h-7 rounded-full flex items-center justify-center hover:bg-black/20 text-white active:scale-90 transition-transform duration-[180ms] ease-out cursor-pointer"
+      >
+        <svg
+          className="w-4 h-4 md:w-3.5 md:h-3.5 text-white pointer-events-none"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2.6}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+        </svg>
+      </button>
+    </div>
+  );
+}
+
 export function BurgerMenu() {
   const [selectedCategory, setSelectedCategory] =
     useState<Category>("Hamburguesas");
@@ -445,6 +541,9 @@ export function BurgerMenu() {
   };
 
   const handleUpdateQuantity = (id: string, delta: number) => {
+    if (delta < 0) {
+      playTickSound();
+    }
     setCartItems((prev) =>
       prev
         .map((i) => {
@@ -475,7 +574,7 @@ export function BurgerMenu() {
   return (
     <section
       id="menu"
-      className="relative w-full bg-white text-black border-t-2 border-b-2 border-black select-none"
+      className="relative w-full bg-white text-black border-t-2 border-b-2 border-black select-none pb-[96px]"
     >
       {/* ── Section Title Banner & Category Tabs (Scroll Reveal) ────────── */}
       <div className="reveal-section w-full">
@@ -562,31 +661,24 @@ export function BurgerMenu() {
                 </p>
               </div>
 
-              {/* 3. Solid Red Price & Add Bar (Matches Reference Image) */}
-              <button
-                type="button"
-                onClick={(e) =>
-                  handleAddToCart(
-                    {
-                      id: item.id,
-                      name: item.name,
-                      price: item.price,
-                      image: item.image,
-                    },
-                    e
-                  )
-                }
-                aria-label={`Agregar ${item.name} por ${item.price}`}
-                className="w-full bg-[#E31B23] hover:bg-[#c9141c] text-white py-4 px-6 flex items-center justify-center gap-3 transition-colors duration-200 cursor-pointer group/btn active:scale-[0.98]"
-              >
-                <span className="font-heading font-black text-3xl sm:text-4xl tracking-tight leading-none text-white group-hover/btn:scale-105 transition-transform">
+              {/* 3. Solid Red Price & Add Bar */}
+              <div className="w-full bg-[#E31B23] py-3 sm:py-3.5 px-5 sm:px-6 flex items-center justify-between border-t-2 border-black">
+                <span className="font-heading font-black text-3xl sm:text-4xl tracking-tight leading-none text-white select-none">
                   {item.price}
                 </span>
-                <span className="bg-black/25 group-hover/btn:bg-black/40 text-white font-sans font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full transition-colors flex items-center gap-1">
-                  <span>AGREGAR</span>
-                  <span className="text-sm font-black leading-none">+</span>
-                </span>
-              </button>
+
+                <MenuAddButton
+                  item={{
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    image: item.image,
+                  }}
+                  quantity={cartItems.find((ci) => ci.id === item.id)?.quantity || 0}
+                  onAdd={handleAddToCart}
+                  onUpdateQty={handleUpdateQuantity}
+                />
+              </div>
             </div>
           );
         })}
@@ -624,27 +716,21 @@ export function BurgerMenu() {
               </div>
 
               {/* Price & Add to Cart Button */}
-              <div className="w-36 sm:w-48 bg-[#141416] text-white px-3 sm:px-4 py-4 flex items-center justify-between gap-2">
-                <span className="font-heading font-black text-base sm:text-xl tracking-tight leading-none text-white">
+              <div className="w-36 sm:w-52 bg-[#141416] text-white px-3 sm:px-4 py-3 flex items-center justify-between gap-2">
+                <span className="font-heading font-black text-base sm:text-xl tracking-tight leading-none text-white select-none">
                   {drink.price}
                 </span>
 
-                <button
-                  type="button"
-                  onClick={(e) =>
-                    handleAddToCart(
-                      {
-                        id: `drink-${idx}`,
-                        name: drink.name,
-                        price: drink.price,
-                      },
-                      e
-                    )
-                  }
-                  className="bg-[#FF5500] hover:bg-[#E04B00] text-white text-[11px] font-black uppercase px-2.5 py-1.5 rounded-full border border-black shadow-xs active:scale-[0.96] transition-transform duration-[180ms] cursor-pointer"
-                >
-                  + AGREGAR
-                </button>
+                <MenuAddButton
+                  item={{
+                    id: `drink-${idx}`,
+                    name: drink.name,
+                    price: drink.price,
+                  }}
+                  quantity={cartItems.find((ci) => ci.id === `drink-${idx}`)?.quantity || 0}
+                  onAdd={handleAddToCart}
+                  onUpdateQty={handleUpdateQuantity}
+                />
               </div>
             </div>
           ))}
@@ -665,27 +751,21 @@ export function BurgerMenu() {
               </div>
 
               {/* Price & Add to Cart Button */}
-              <div className="w-36 sm:w-48 bg-[#141416] text-white px-3 sm:px-4 py-4 flex items-center justify-between gap-2">
-                <span className="font-heading font-black text-base sm:text-xl tracking-tight leading-none text-white">
+              <div className="w-36 sm:w-52 bg-[#141416] text-white px-3 sm:px-4 py-3 flex items-center justify-between gap-2">
+                <span className="font-heading font-black text-base sm:text-xl tracking-tight leading-none text-white select-none">
                   {drink.price}
                 </span>
 
-                <button
-                  type="button"
-                  onClick={(e) =>
-                    handleAddToCart(
-                      {
-                        id: `drink-right-${idx}`,
-                        name: drink.name,
-                        price: drink.price,
-                      },
-                      e
-                    )
-                  }
-                  className="bg-[#FF5500] hover:bg-[#E04B00] text-white text-[11px] font-black uppercase px-2.5 py-1.5 rounded-full border border-black shadow-xs active:scale-[0.96] transition-transform duration-[180ms] cursor-pointer"
-                >
-                  + AGREGAR
-                </button>
+                <MenuAddButton
+                  item={{
+                    id: `drink-right-${idx}`,
+                    name: drink.name,
+                    price: drink.price,
+                  }}
+                  quantity={cartItems.find((ci) => ci.id === `drink-right-${idx}`)?.quantity || 0}
+                  onAdd={handleAddToCart}
+                  onUpdateQty={handleUpdateQuantity}
+                />
               </div>
             </div>
           ))}
@@ -698,7 +778,7 @@ export function BurgerMenu() {
           type="button"
           onClick={() => setIsCartOpen(true)}
           aria-label="Abrir carrito de compras"
-          className="fixed bottom-6 left-6 z-40 flex items-center gap-3 bg-[#141416] hover:bg-[#202024] text-white border-2 border-[#FF5500] px-4 sm:px-5 py-3 rounded-full shadow-[0_8px_30px_rgba(255,85,0,0.35)] transition-transform duration-[180ms] active:scale-95 cursor-pointer group animate-floating-pill-slide-up"
+          className="fixed bottom-10 left-4 min-[1200px]:bottom-6 min-[1200px]:left-6 z-40 flex items-center gap-3 bg-[#141416] hover:bg-[#202024] text-white border-2 border-[#FF5500] px-4 sm:px-5 py-3 rounded-full shadow-[0_8px_30px_rgba(255,85,0,0.35)] transition-transform duration-[180ms] active:scale-95 cursor-pointer group animate-floating-pill-slide-up"
         >
           <div className="relative">
             <svg
@@ -737,7 +817,7 @@ export function BurgerMenu() {
         rel="noopener noreferrer"
         title="Escribir a Poto's por WhatsApp"
         aria-label="Hablar por WhatsApp"
-        className="fixed bottom-6 right-6 z-40 w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center hover:scale-110 active:scale-95 transition-all cursor-pointer drop-shadow-[0_8px_20px_rgba(37,211,102,0.45)] group"
+        className="fixed bottom-10 right-4 min-[1200px]:bottom-6 min-[1200px]:right-6 z-40 w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center hover:scale-110 active:scale-95 transition-all cursor-pointer drop-shadow-[0_8px_20px_rgba(37,211,102,0.45)] group"
       >
         <img
           src="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/960px-WhatsApp.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail"
