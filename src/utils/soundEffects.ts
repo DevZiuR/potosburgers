@@ -4,6 +4,7 @@
 
 let audioCtx: AudioContext | null = null;
 let compressor: DynamicsCompressorNode | null = null;
+let makeupGain: GainNode | null = null;
 
 // Initial state: default to sound on (false = not muted), unless prefers-reduced-motion
 let isMutedGlobal = false;
@@ -66,7 +67,13 @@ export function initAudioContext(): AudioContext | null {
       compressor.ratio.value     =  4;   // 4:1 ratio
       compressor.attack.value    =  0.003;
       compressor.release.value   =  0.18;
-      compressor.connect(audioCtx.destination);
+
+      // ── Makeup gain: compensates for compression, lifts final output ──
+      makeupGain = audioCtx.createGain();
+      makeupGain.gain.value = 2.0;  // +6 dB boost after compression
+
+      compressor.connect(makeupGain);
+      makeupGain.connect(audioCtx.destination);
     }
 
     if (audioCtx.state === "suspended") {
@@ -83,7 +90,6 @@ export function initAudioContext(): AudioContext | null {
 function getOutput(): AudioNode {
   return compressor ?? (audioCtx!.destination);
 }
-
 // ── 1. "Agregar" button: soft short pop (sine 600Hz -> 900Hz, 120ms) ────────
 export function playAddSound(): void {
   try {
@@ -99,7 +105,7 @@ export function playAddSound(): void {
     osc.frequency.setValueAtTime(600, now);
     osc.frequency.exponentialRampToValueAtTime(900, now + 0.12);
 
-    gain.gain.setValueAtTime(0.9, now);
+    gain.gain.setValueAtTime(1.0, now);
     gain.gain.exponentialRampToValueAtTime(0.001, now + 0.14);
 
     osc.connect(gain);
@@ -127,7 +133,7 @@ export function playTickSound(): void {
     osc.frequency.setValueAtTime(800, now);
     osc.frequency.exponentialRampToValueAtTime(380, now + 0.05);
 
-    gain.gain.setValueAtTime(0.9, now);
+    gain.gain.setValueAtTime(1.0, now);
     gain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
 
     osc.connect(gain);
@@ -155,7 +161,7 @@ export function playClickSound(): void {
     osc.frequency.setValueAtTime(520, now);
     osc.frequency.exponentialRampToValueAtTime(260, now + 0.07);
 
-    gain.gain.setValueAtTime(0.9, now);
+    gain.gain.setValueAtTime(1.0, now);
     gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
 
     osc.connect(gain);
@@ -227,7 +233,7 @@ export function playConfirmationChime(): void {
       osc.type = "sine";
       osc.frequency.setValueAtTime(freq, startTime);
 
-      gain.gain.setValueAtTime(0.9, startTime);
+      gain.gain.setValueAtTime(1.0, startTime);
       gain.gain.exponentialRampToValueAtTime(0.001, startTime + noteDuration);
 
       osc.connect(gain);
