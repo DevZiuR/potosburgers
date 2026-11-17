@@ -23,16 +23,6 @@ const locations: Location[] = [
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Poto%27s+Burgers+Centro+Comercial+Z%26T+El+Tigre",
   },
-  {
-    id: "lecheria",
-    name: "LECHERÍA (PRONTO)",
-    address: "Próximamente en Lechería, Anzoátegui",
-    hours: "Apertura muy pronto",
-    phone: "+58 414-9813390",
-    image:
-      "https://images.unsplash.com/photo-155539627f3-367ea4eb4db5?auto=format&fit=crop&w=1600&q=85",
-    mapsUrl: "https://maps.google.com/?q=Lecheria+Anzoategui+Venezuela",
-  },
 ];
 
 export function BurgerLocations() {
@@ -78,12 +68,7 @@ export function BurgerLocations() {
             {/* Subtle atmospheric vignette */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
 
-            {/* Badge for Pronto */}
-            {selectedLocation.id === "lecheria" && (
-              <div className="absolute top-4 left-4 z-10 bg-[#E31B23] text-white font-sans text-xs font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full shadow-md">
-                PRÓXIMAMENTE
-              </div>
-            )}
+
           </div>
 
           {/* Bottom Black Info Bar */}
