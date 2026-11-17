@@ -164,7 +164,7 @@ export function BurgerReviews() {
                         }
                       >
                         <Image
-                          src="/media/graphics/peeking-over.png"
+                          src="/media/graphics/peaking-over.png"
                           alt="Mascota asomándose"
                           width={1536}
                           height={1024}
