@@ -43,7 +43,7 @@ export function BurgerContact() {
           <div className="lg:col-span-6">
             <div className="reveal-item w-full bg-black text-white rounded-3xl p-7 sm:p-10 md:p-12 shadow-2xl border border-black flex flex-col">
               <h3 className="font-heading font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight uppercase text-white leading-tight mb-7 sm:mb-8 select-none">
-                RESERVAS, PRENSA O HAMBRE FEROZ — HABLEMOS.
+                ESCRÍBENOS. TU PRÓXIMA BURGER TE ESPERA.
               </h3>
 
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
